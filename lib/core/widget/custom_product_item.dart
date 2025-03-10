@@ -1,92 +1,57 @@
 import 'package:flutter/material.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_theme.dart';
+import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 
 class CustomProductItem extends StatelessWidget {
-  const CustomProductItem({
-    super.key,
-    required this.product,
-    required this.products,
-  });
-  final ProductEntity product;
-  final List<ProductEntity> products;
+  const CustomProductItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color:
-             Colors.white,
-       
+        color: Colors.white,
+
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Stack(
+      child: Column(
         children: [
-          Column(
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10)),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailsScreen(
-                              product: product,
-                              products: products,
-                            ),
-                          ));
-                    },
-                    child: Image.asset(
-                      product.imageUrl,
-                    ),
-                  ),
-                ),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: GestureDetector(
+                onTap: () {},
+                child: Image.asset(AppImages.product),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 150,
+                  child: Text("Product", style: AppStyles.text14Regular),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 150,
-                      child: Text(
-                        product.name,
-                        style: AppStyles.text14Regular,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('\$${product.price.toStringAsFixed(2)}',
-                            style: AppStyles.text16Regular),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: const BoxDecoration(
-                            color: AppColors.primaryColor,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10)),
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ],
-                    ),
+                    Text('\$5', style: AppStyles.text16Bold),
+                    const Spacer(),
+                    Text('5 Stock', style: AppStyles.text14Regular),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-         
         ],
       ),
     );
