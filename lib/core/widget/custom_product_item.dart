@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
@@ -7,12 +8,12 @@ import 'package:shop_sphere_dashboard/core/utils/app_theme.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 
 class CustomProductItem extends StatelessWidget {
-  const CustomProductItem({super.key});
-
+  const CustomProductItem({super.key, required this.product});
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
 
@@ -28,25 +29,28 @@ class CustomProductItem extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {},
-                child: Image.asset(AppImages.product),
+                child: Image.asset(product.image),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 150,
-                  child: Text("Product", style: AppStyles.text14Regular),
+                  child: Text(product.name, style: AppStyles.text14Regular),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('\$5', style: AppStyles.text16Bold),
+                    Text('\$ ${product.price}', style: AppStyles.text16Bold),
                     const Spacer(),
-                    Text('5 Stock', style: AppStyles.text14Regular),
+                    Text(
+                      '${product.stock} Stock',
+                      style: AppStyles.text14Regular,
+                    ),
                   ],
                 ),
               ],

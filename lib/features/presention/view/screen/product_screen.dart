@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/test_data/test_product.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
+import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -28,15 +31,22 @@ class ProductScreen extends StatelessWidget {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
-              itemCount: 10,
-              itemBuilder: (context, index) => const CustomProductItem(),
+              itemCount: dummyProducts.length,
+              itemBuilder:
+                  (context, index) =>
+                      CustomProductItem(product: dummyProducts[index]),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddProductScreen()),
+          );
+        },
 
         child: Icon(Icons.add, color: Colors.white),
       ),
