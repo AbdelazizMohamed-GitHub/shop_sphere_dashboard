@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "909426718408",
+    "project_id": "shopsphere-b422e",
+    "storage_bucket": "shopsphere-b422e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909426718408:android:f3d7eedbb8ecc3c08657fd",
+        "android_client_info": {
+          "package_name": "com.example.shop_sphere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909426718408-397plu3iln728joimer5793311m50dlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shop_sphere",
+            "certificate_hash": "98d079de9088be9c97c87479522a7722a9051876"
+          }
+        },
+        {
+          "client_id": "909426718408-6vo00enp2vqmg2qcrajcksa3igoqo1s9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAUBFD_FqC6r5qlGdl5JYRiaVTHtPms48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909426718408-6vo00enp2vqmg2qcrajcksa3igoqo1s9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "909426718408-j0nlqc9153daonmfmrpnvmdppml73b0r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shopSphere"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909426718408:android:8bd25eb7530b970f8657fd",
+        "android_client_info": {
+          "package_name": "com.example.shop_sphere_dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909426718408-6vo00enp2vqmg2qcrajcksa3igoqo1s9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAUBFD_FqC6r5qlGdl5JYRiaVTHtPms48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909426718408-6vo00enp2vqmg2qcrajcksa3igoqo1s9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "909426718408-j0nlqc9153daonmfmrpnvmdppml73b0r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shopSphere"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
