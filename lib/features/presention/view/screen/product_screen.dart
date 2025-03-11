@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shop_sphere_dashboard/core/test_data/test_product.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
-import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
 
 class ProductScreen extends StatelessWidget {

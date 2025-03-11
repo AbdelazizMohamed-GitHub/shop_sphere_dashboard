@@ -1,10 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
-import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
-import 'package:shop_sphere_dashboard/core/utils/app_theme.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 
 class CustomProductItem extends StatelessWidget {

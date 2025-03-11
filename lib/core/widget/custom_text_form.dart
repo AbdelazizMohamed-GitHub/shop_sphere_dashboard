@@ -44,10 +44,9 @@ class CustomTextForm extends StatelessWidget {
         ),
         enabledBorder: border,
         prefixIcon: Icon(pIcon),
+        hintMaxLines: line,
         suffixIcon: sIcon,
         hintText: text,
-        
-      
       ),
     );
   }
