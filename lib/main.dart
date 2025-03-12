@@ -6,6 +6,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             titleTextStyle: AppStyles.text26BoldBlack,
           ),
         ),
-        home: const ProductScreen(),
+        home: const OrderScreen(),
       ),
     );
   }
