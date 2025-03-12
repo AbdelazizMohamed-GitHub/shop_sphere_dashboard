@@ -100,7 +100,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               const SizedBox(height: 20),
               BlocConsumer<ProductCubit, ProductState>(
                 listener: (context, state) {
-                  if (state is AddProductFailer) {
+                  if (state is ProductFailer) {
                     Warning.showWarning(context, message: state.errMessage);
                   }
                   if (state is AddProductSuccess) {

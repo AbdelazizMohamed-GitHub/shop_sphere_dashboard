@@ -6,14 +6,32 @@ import 'package:shop_sphere_dashboard/features/presention/view/controller/produc
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit({required this.productRepo}) : super(ProductInitial());
   final ProductRepo productRepo;
- Future<void> addProduct( {required ProductModel product,required String dId}) async {
+  Future<void> addProduct({
+    required ProductModel product,
+    required String dId,
+  }) async {
     emit(AddProductLoading());
- var result =await   productRepo.addProduct(product: product, dId: dId);
-    result.fold((error) {
-      emit(AddProductFailer(errMessage:error.message ));
-    }, (r) {
-      emit(AddProductSuccess());
-    });
-    
+    var result = await productRepo.addProduct(product: product, dId: dId);
+    result.fold(
+      (error) {
+        emit(ProductFailer(errMessage: error.message));
+      },
+      (r) {
+        emit(AddProductSuccess());
+      },
+    );
+  }
+
+  Future<void> getProducts() async {
+    emit(GetProductsLoading());
+    var result = await productRepo.getProducts();
+    result.fold(
+      (error) {
+        emit(ProductFailer(errMessage: error.message));
+      },
+      (products) {
+        emit(GetProductsSuccess(products: products));
+      },
+    );
   }
 }

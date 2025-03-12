@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
@@ -25,7 +26,7 @@ class CustomProductItem extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {},
-                child: Image.asset(product.image),
+                child: Image.asset(ProductImages.apple),
               ),
             ),
           ),

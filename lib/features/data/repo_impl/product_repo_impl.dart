@@ -8,6 +8,7 @@ import 'package:shop_sphere_dashboard/features/domain/repo/product_repo.dart';
 
 class ProductRepoImpl extends ProductRepo {
   @override
+  
   Future<Either<FirebaseFailure, String>> addProduct({
     required ProductModel product,
     required String dId,
@@ -25,8 +26,8 @@ class ProductRepoImpl extends ProductRepo {
   @override
   Future<Either<FirebaseFailure, List<ProductEntity>>> getProducts() async {
     try {
-      await FirestoreService.gettProducts();
-      return Right([]);
+   var result=   await FirestoreService.gettProducts();
+      return Right(result);
     } on FirebaseException catch (e) {
       return Left((FirebaseFailure.fromCode(e.code)));
     }

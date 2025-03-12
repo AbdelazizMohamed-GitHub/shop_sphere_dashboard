@@ -6,6 +6,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 
 void main() async {
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProductCubit(productRepo: ProductRepoImpl()),
       child: MaterialApp(
-     
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.backgroundColor,
           appBarTheme: AppBarTheme(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             titleTextStyle: AppStyles.text26BoldBlack,
           ),
         ),
-        home: const AddProductScreen(),
+        home: const ProductScreen(),
       ),
     );
   }
