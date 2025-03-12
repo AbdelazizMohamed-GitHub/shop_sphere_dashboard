@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_button.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
+import 'package:shop_sphere_dashboard/core/widget/warning.dart';
 import 'package:shop_sphere_dashboard/features/data/model/product_model.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_add_image.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
 import 'package:uuid/uuid.dart';
@@ -94,22 +98,54 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
               CustomAddImage(),
               const SizedBox(height: 20),
-              CustomButton(
-                onPressed: ()async {
-                  ProductModel product = ProductModel(
-                    name: nameController.text,
-                    price: double.parse(priceController.text),
-                    stock: int.parse(quantityController.text),
-
-                    category: selectedCategory!,
-                    description: descriptionController.text,
-                    id: Uuid().v4(),
-                    sId: "123456789",
-                    imageUrl: '',
-                  );
-               
+              BlocConsumer<ProductCubit, ProductState>(
+                listener: (context, state) {
+                  if (state is AddProductFailer) {
+                    Warning.showWarning(context, message: state.errMessage);
+                  }
+                  if (state is AddProductSuccess) {
+                    Warning.showWarning(
+                      context,
+                      message: "Product Added Successfully",
+                    );
+                  }
                 },
-                text: "Add Product",
+                builder: (context, state) {
+                  return state is AddProductLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                        onPressed: () async {
+                          if (nameController.text.isNotEmpty &&
+                              priceController.text.isNotEmpty &&
+                              quantityController.text.isNotEmpty &&
+                              descriptionController.text.isNotEmpty &&
+                              selectedCategory != null) {
+                            String dId = Uuid().v4();
+                            ProductModel product = ProductModel(
+                              name: nameController.text,
+                              price: double.parse(priceController.text),
+                              stock: int.parse(quantityController.text),
+
+                              category: selectedCategory!,
+                              description: descriptionController.text,
+                              id: dId,
+                              sId: "123456789",
+                              imageUrl: '',
+                            );
+                            await context.read<ProductCubit>().addProduct(
+                              dId: dId,
+                              product: product,
+                            );
+                          } else {
+                            Warning.showWarning(
+                              context,
+                              message: "Please fill all fields",
+                            );
+                          }
+                        },
+                        text: "Add Product",
+                      );
+                },
               ),
             ],
           ),
