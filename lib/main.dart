@@ -8,6 +8,7 @@ import 'package:shop_sphere_dashboard/features/presention/view/controller/produc
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/test_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 
 void main() async {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             titleTextStyle: AppStyles.text26BoldBlack,
           ),
         ),
-        home: const OrderScreen(),
+        home:  OrdersScreen(),
       ),
     );
   }
