@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
-class OrdersScreen extends StatelessWidget {
+class OrdersHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

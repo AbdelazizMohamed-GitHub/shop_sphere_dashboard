@@ -1,4 +1,4 @@
-String kClientId =
-    "ATCRUP9Ma8Oar_3iwnERmRUskawdYzhFMtFNGorx8VAsNPTYiLLL5MVe-wI8wCVmw0zbyguwTi73RFf7";
-String kSecret =
-    "EJckfnqKxDl6_O94YihX1Mlb17tjebq3_ZaYdCDwuzt84-wIZ1SikHZLTMFxuUN814eUY10Khfrt17dR";
+class AppKeys {
+  static const String supbaseUrl="https://oydjpuirgaaxururbnxc.supabase.co";
+  static const String supbaseApiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95ZGpwdWlyZ2FheHVydXJibnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIzMzY4MDcsImV4cCI6MjA1NzkxMjgwN30.vX6kkJ8TYbHESL2HN7crRBcqHuCM2qD1I_q8XE-P1hg";
+}
