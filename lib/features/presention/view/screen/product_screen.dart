@@ -7,6 +7,7 @@ import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -14,7 +15,9 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCubit(productRepo: ProductRepoImpl())..getProducts(),
+      create:
+          (context) =>
+              ProductCubit(productRepo: ProductRepoImpl())..getProducts(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Products"),
@@ -29,33 +32,41 @@ class ProductScreen extends StatelessWidget {
         body: BlocConsumer<ProductCubit, ProductState>(
           listener: (context, state) {
             if (state is ProductFailer) {
-            Warning.showWarning(context, message: state.errMessage);
+              Warning.showWarning(context, message: state.errMessage);
             }
           },
           builder: (context, state) {
-            return state is GetProductsSuccess ? RefreshIndicator(
-              onRefresh: () async {
-                context.read<ProductCubit>().getProducts();
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverGrid.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                      itemCount: state.products.length,
-                      itemBuilder:
-                          (context, index) =>
-                              CustomProductItem(product:state.products[index] ),
+            return state is GetProductsLoading
+                ? Center(child: CircularProgressIndicator())
+                : state is GetProductsSuccess
+                ? RefreshIndicator(
+                  onRefresh: () async {
+                    context.read<ProductCubit>().getProducts();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverGrid.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                              ),
+                          itemCount: state.products.length,
+                          itemBuilder:
+                              (context, index) => CustomProductItem(
+                                product: state.products[index],
+                              ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ) : const Center(child: CircularProgressIndicator());
+                  ),
+                )
+                : state is ProductFailer
+                ? Text("${state.errMessage}")
+                : Container();
           },
         ),
         floatingActionButton: FloatingActionButton(

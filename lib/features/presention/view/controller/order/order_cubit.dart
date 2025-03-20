@@ -4,10 +4,5 @@ import 'package:shop_sphere_dashboard/features/presention/view/controller/order/
 
 class OrderCubit extends Cubit<OrderState> {
   OrderCubit() : super(OrderInitial());
-  int currentStatus = 0;
-  PageController pageController = PageController(initialPage: 0);
-  void changeOrderStatus(int index) {
-    currentStatus = index;
-    emit(OrderChangeStatus());
-  }
+  
 }

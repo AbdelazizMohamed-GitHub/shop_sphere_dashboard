@@ -3,6 +3,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({super.key, required this.product});
@@ -25,7 +26,16 @@ class CustomProductItem extends StatelessWidget {
                 topRight: Radius.circular(10),
               ),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return DetailsScreen(product: product);
+                      },
+                    ),
+                  );
+                },
                 child: Image.asset(ProductImages.apple),
               ),
             ),

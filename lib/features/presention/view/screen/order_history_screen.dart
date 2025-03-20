@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
 
 class OrdersHistoryScreen extends StatelessWidget {
@@ -22,12 +24,30 @@ class OrdersHistoryScreen extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.shopping_cart),
               title: Text('Orders'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return OrderScreen();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.inventory),
               title: Text('Products'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ProductScreen();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.people),
@@ -48,37 +68,39 @@ class OrdersHistoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Search and Filter Row
+            CustomTextForm(
+              pIcon: Icons.search_rounded,
+              text: "Search about order",
+              kType: TextInputType.text,
+            ),
+            SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
-                  child: CustomTextForm(
-                    pIcon: Icons.search_rounded,
-                    text: "Search about order",
-                    kType: TextInputType.text,
+                  child: CustomDropdown(
+                    categories: [
+                      "All",
+                      "Pending",
+                      "Process",
+                      "Delivared",
+                      "Cancel",
+                    ],
+                    onCategorySelected: (value) {},
                   ),
                 ),
                 SizedBox(width: 10),
-                CustomDropdown(
-                  categories: [
-                    "All",
-                    "Pending",
-                    "Process",
-                    "Delivared",
-                    "Cancel",
-                  ],
-                  onCategorySelected: (value) {},
-                ),
-                SizedBox(width: 10),
-                CustomDropdown(
-                  categories: ["Today", "Last 7 Days", "Last Mounth"],
-                  onCategorySelected: (value) {},
+                Expanded(
+                  child: CustomDropdown(
+                    categories: ["Today", "Last 7 Days", "Last Mounth"],
+                    onCategorySelected: (value) {},
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 20),
 
             // Create New Order Button
-           
+
             // Orders Table
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -89,7 +111,6 @@ class OrdersHistoryScreen extends StatelessWidget {
                   DataColumn(label: Text('Date')),
                   DataColumn(label: Text('Status')),
                   DataColumn(label: Text('Total Amount')),
-                 
                 ],
                 rows: [
                   DataRow(
@@ -111,7 +132,6 @@ class OrdersHistoryScreen extends StatelessWidget {
                         ),
                       ),
                       DataCell(Text('\$150.00')),
-                     
                     ],
                   ),
                   // Add more rows as needed
