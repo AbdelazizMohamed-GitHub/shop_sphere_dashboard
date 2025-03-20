@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/order_history_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/profile_screen.dart';
 
 const List<Widget> screens = [
-  // ExploreScreen(),
-  // FavoriteScreen(),
-  // NotificationScreen(),
-  // ProfileScreen(),
+  ProductScreen(),
+  OrderScreen(),
+  OrdersHistoryScreen(),
+  ProfileScreen(),
 ];
 List<PaymentMethodModel> paymentMethod = [
   PaymentMethodModel(title: "Cash on delivery", imagePath: AppImages.payCash),

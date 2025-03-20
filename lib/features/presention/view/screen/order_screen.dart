@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_sphere_dashboard/core/test_data/test_list.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/order/order_cubit.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/controller/order/order_state.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_order_screen_body.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_order_stuts_list.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_order_items.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({super.key});
@@ -21,15 +20,17 @@ class OrderScreen extends StatelessWidget {
           leadingWidth: 100,
         ),
         body: Padding(
-          padding: const EdgeInsets.only(left: 10, top: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: Column(
             children: [
-              const SizedBox(height: 40, child: CustomOrderStutsList()),
-              BlocBuilder<OrderCubit, OrderState>(
-                builder: (context, state) {
-                  return const CustomOrderScreenBody();
-                },
-              ),
+              CustomOrderItem(item: TestList.cartItems[0]),
+
+              // const SizedBox(height: 40, child: CustomOrderStutsList()),
+              // BlocBuilder<OrderCubit, OrderState>(
+              //   builder: (context, state) {
+              //     return const CustomOrderScreenBody();
+              //   },
+              // ),
             ],
           ),
         ),

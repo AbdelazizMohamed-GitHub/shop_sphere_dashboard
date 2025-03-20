@@ -3,6 +3,7 @@ import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
 
 class OrdersHistoryScreen extends StatelessWidget {
+  const OrdersHistoryScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
