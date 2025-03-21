@@ -54,7 +54,7 @@ class _CustomAddImageState extends State<CustomAddImage> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.file(imageFile!, fit: BoxFit.fill),
+                    child: Image.file(imageFile!, fit: BoxFit.fitWidth),
                   ),
                   Positioned(
                     top: 0,

@@ -7,7 +7,6 @@ import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});

@@ -139,19 +139,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   id: dId,
                                   sId: "123456789",
                                   imageUrl: await SupabaseService.uploadImage(
-                                    file: imageFile!,                    ),
+                                    file: imageFile!,
+                                  ),
                                 );
                                 await context.read<ProductCubit>().addProduct(
                                   dId: dId,
                                   product: product,
                                 );
-                              }else {
-                              Warning.showWarning(
-                                context,
-                                message: "Please Add Image",
-                              );
+                              } else {
+                                Warning.showWarning(
+                                  context,
+                                  message: "Please Add Image",
+                                );
+                              }
                             }
-                            } 
                           },
                           text: "Add Product",
                         );

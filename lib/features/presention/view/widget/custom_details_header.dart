@@ -5,6 +5,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 
 class CustomDetailsHeader extends StatelessWidget {
+  
   const CustomDetailsHeader({super.key, required this.product});
   final ProductEntity product;
   @override

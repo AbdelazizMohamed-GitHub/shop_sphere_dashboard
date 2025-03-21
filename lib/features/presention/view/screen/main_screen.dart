@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
 
-class OrdersHistoryScreen extends StatelessWidget {
-  const OrdersHistoryScreen({super.key});
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Orders History')),
+      appBar: AppBar(title: Text('Main Screen')),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Dashboard',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
+              child: Text('Dashboard', style: AppStyles.text26BoldWhite),
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart),

@@ -24,13 +24,7 @@ class OrderScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomOrderItem(item: TestList.cartItems[0]),
-
-              // const SizedBox(height: 40, child: CustomOrderStutsList()),
-              // BlocBuilder<OrderCubit, OrderState>(
-              //   builder: (context, state) {
-              //     return const CustomOrderScreenBody();
-              //   },
-              // ),
+              CustomOrderItem(item: TestList.cartItems[1]),
             ],
           ),
         ),
