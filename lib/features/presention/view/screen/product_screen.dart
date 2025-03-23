@@ -73,7 +73,7 @@ class ProductScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddProductScreen()),
+              MaterialPageRoute(builder: (context) => const AddProductScreen(isUpdate: false,)),
             );
           },
 

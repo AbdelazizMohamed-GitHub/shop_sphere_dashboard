@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
 
 class CustomDetailsHeader extends StatelessWidget {
-  
   const CustomDetailsHeader({super.key, required this.product});
   final ProductEntity product;
   @override
@@ -40,11 +41,23 @@ class CustomDetailsHeader extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                        color: Colors.black,
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.grey.shade400,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>  AddProductScreen(isUpdate: true,productEntity:product ,),
+                            ),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.edit,
+                          color: Colors.black,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ],

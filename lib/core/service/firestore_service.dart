@@ -15,6 +15,12 @@ class FirestoreService {
     return snapshot.docs.map((doc) => ProductModel.fromMap(doc.data())).toList();
     
   }
+  Future<void> deleteProduct({required String dId}) async {
+    await _firestore.collection('products').doc(dId).delete();
+  }
+  Future<void> updateProduct({required String dId, required Map<String, dynamic> data}) async {
+    await _firestore.collection('products').doc(dId).update(data);
+  }
 
   
 }

@@ -1,21 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
+
 import 'package:shop_sphere_dashboard/core/service/supabase_service.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_button.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
 import 'package:shop_sphere_dashboard/core/widget/warning.dart';
 import 'package:shop_sphere_dashboard/features/data/model/product_model.dart';
+import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_add_image.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
-import 'package:uuid/uuid.dart';
 
 class AddProductScreen extends StatefulWidget {
-  const AddProductScreen({super.key});
-
+  const AddProductScreen({
+    super.key,
+    required this.isUpdate,
+    this.productEntity,
+  });
+  final ProductEntity? productEntity;
+  final bool isUpdate;
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
 }
@@ -27,6 +35,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   File? imageFile;
+  @override
+  void initState() {
+    if (widget.isUpdate) {
+      nameController.text = widget.productEntity!.name;
+      quantityController.text = widget.productEntity!.stock.toString();
+      priceController.text = widget.productEntity!.price.toString();
+      descriptionController.text = widget.productEntity!.description;
+      selectedCategory = widget.productEntity!.category;
+    }
+    super.initState();
+  }
+
   @override
   void dispose() {
     nameController.dispose();
@@ -79,6 +99,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     Expanded(
                       flex: 3,
                       child: CustomDropdown(
+                        selectedCategory: selectedCategory ?? "Select Category",
                         categories: [
                           "Electronics",
                           "Fashion",
@@ -115,7 +136,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       Warning.showWarning(context, message: state.errMessage);
                     }
                     if (state is AddProductSuccess) {
-                     Navigator.pop(context);
+                      Navigator.pop(context);
                     }
                   },
                   builder: (context, state) {
