@@ -115,10 +115,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       Warning.showWarning(context, message: state.errMessage);
                     }
                     if (state is AddProductSuccess) {
-                      Warning.showWarning(
-                        context,
-                        message: "Product Added Successfully",
-                      );
+                     Navigator.pop(context);
                     }
                   },
                   builder: (context, state) {

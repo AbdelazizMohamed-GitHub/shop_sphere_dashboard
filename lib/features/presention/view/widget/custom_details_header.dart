@@ -40,6 +40,13 @@ class CustomDetailsHeader extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 10),
