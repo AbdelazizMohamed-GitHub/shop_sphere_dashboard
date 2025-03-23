@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
+import 'package:shop_sphere_dashboard/core/widget/custom_back_button.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
 import 'package:shop_sphere_dashboard/core/widget/warning.dart';
-import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/search_screen.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -19,10 +19,16 @@ class ProductScreen extends StatelessWidget {
       create: (context) => getIt<ProductCubit>()..getProducts(),
       child: Scaffold(
         appBar: AppBar(
+          leading: CustomBackButton(),
           title: const Text("Products"),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchScreen()),
+                );
+              },
               icon: const Icon(Icons.search, size: 30),
             ),
             SizedBox(width: 10),

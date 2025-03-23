@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
+import 'package:shop_sphere_dashboard/core/widget/custom_back_button.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:shop_sphere_dashboard/core/service/supabase_service.dart';
@@ -65,6 +66,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       create: (context) => getIt<ProductCubit>(),
       child: Scaffold(
         appBar: AppBar(
+         leading:  CustomBackButton(),
           title: Text(widget.isUpdate ? "Update Product" : "Add Product"),
         ),
         body: Form(

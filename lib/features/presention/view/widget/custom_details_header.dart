@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 
