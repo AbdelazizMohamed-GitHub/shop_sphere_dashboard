@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
+import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
 import 'package:shop_sphere_dashboard/core/widget/warning.dart';
@@ -15,11 +16,7 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) =>
-              ProductCubit(productRepo: ProductRepoImpl(
-                firestoreService: FirestoreService(),
-              ))..getProducts(),
+      create: (context) => getIt<ProductCubit>()..getProducts(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Products"),
@@ -76,12 +73,14 @@ class ProductScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddProductScreen(isUpdate: false,)),
+              MaterialPageRoute(
+                builder: (context) => const AddProductScreen(isUpdate: false),
+              ),
             ).then((value) {
-  if (value == true) {
-    context.read<ProductCubit>().getProducts();
-  }
-});
+              if (value == true) {
+                context.read<ProductCubit>().getProducts();
+              }
+            });
           },
 
           child: Icon(Icons.add, color: Colors.white),
