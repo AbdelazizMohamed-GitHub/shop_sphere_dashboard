@@ -3,14 +3,14 @@ import 'package:shop_sphere_dashboard/features/data/model/product_model.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 
 class FirestoreService {
- static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
- static Future<void> addProduct({required String dId, required Map<String, dynamic> data}) async {
+  Future<void> addProduct({required String dId, required Map<String, dynamic> data}) async {
  
       await _firestore.collection('products').doc(dId).set(data);
    
   }
-   static Future<List<ProductEntity>> gettProducts() async {
+    Future<List<ProductEntity>> gettProducts() async {
     final snapshot = await _firestore.collection('products').get();
     return snapshot.docs.map((doc) => ProductModel.fromMap(doc.data())).toList();
     
@@ -18,8 +18,8 @@ class FirestoreService {
   Future<void> deleteProduct({required String dId}) async {
     await _firestore.collection('products').doc(dId).delete();
   }
-  Future<void> updateProduct({required String dId, required Map<String, dynamic> data}) async {
-    await _firestore.collection('products').doc(dId).update(data);
+  Future<void> updateProduct({required String dId, required ProductModel data}) async {
+    await _firestore.collection('products').doc(dId).update(data.toMap());
   }
 
   

@@ -76,6 +76,7 @@ class MainScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomDropdown(
+                    isUpdate: false,
                     categories: [
                       "All",
                       "Pending",
@@ -89,6 +90,7 @@ class MainScreen extends StatelessWidget {
                 SizedBox(width: 10),
                 Expanded(
                   child: CustomDropdown(
+                    isUpdate: false,
                     categories: ["Today", "Last 7 Days", "Last Mounth"],
                     onCategorySelected: (value) {},
                   ),

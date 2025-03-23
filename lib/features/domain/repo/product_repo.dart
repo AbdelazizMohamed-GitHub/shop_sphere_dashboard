@@ -10,5 +10,9 @@ abstract class ProductRepo {
   });
   
   Future<Either<FirebaseFailure, List<ProductEntity>>> getProducts();
+  
+  Future<Either<FirebaseFailure, void>> deleteProduct({required String dId});
+  
+  Future<Either<FirebaseFailure, void>> updateProduct({required String dId, required ProductModel data});
 
 }

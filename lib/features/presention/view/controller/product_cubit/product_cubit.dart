@@ -10,14 +10,14 @@ class ProductCubit extends Cubit<ProductState> {
     required ProductModel product,
     required String dId,
   }) async {
-    emit(AddProductLoading());
+    emit(ProductLoading());
     var result = await productRepo.addProduct(product: product, dId: dId);
     result.fold(
       (error) {
         emit(ProductFailer(errMessage: error.message));
       },
       (r) {
-        emit(AddProductSuccess());
+        emit(ProductSuccess());
       },
     );
   }
@@ -31,6 +31,35 @@ class ProductCubit extends Cubit<ProductState> {
       },
       (products) {
         emit(GetProductsSuccess(products: products));
+      },
+    );
+  }
+
+  Future<void> deleteProduct({required String dId}) async {
+    emit(ProductLoading());
+    var result = await productRepo.deleteProduct(dId: dId);
+    result.fold(
+      (error) {
+        emit(ProductFailer(errMessage: error.message));
+      },
+      (r) {
+        emit(ProductSuccess());
+      },
+    );
+  }
+
+  Future<void> updateProduct({
+    required String dId,
+    required ProductModel data,
+  }) async {
+    emit(ProductLoading());
+    var result = await productRepo.updateProduct(dId: dId, data: data);
+    result.fold(
+      (error) {
+        emit(ProductFailer(errMessage: error.message));
+      },
+      (r) {
+        emit(ProductSuccess());
       },
     );
   }

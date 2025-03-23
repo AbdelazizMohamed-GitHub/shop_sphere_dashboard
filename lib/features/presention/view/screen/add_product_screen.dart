@@ -57,19 +57,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   final formKey = GlobalKey<FormState>();
-
+  String dId = Uuid().v4();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Product")),
+      appBar: AppBar(
+        title: Text(widget.isUpdate ? "Update Product" : "Add Product"),
+      ),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: Column(
               children: [
-                SizedBox(height: 20),
                 CustomTextForm(
                   textController: nameController,
                   pIcon: Icons.title,
@@ -99,7 +100,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     Expanded(
                       flex: 3,
                       child: CustomDropdown(
-                        selectedCategory: selectedCategory ?? "Select Category",
+                        productCategory: selectedCategory,
+                        isUpdate: widget.isUpdate,
                         categories: [
                           "Electronics",
                           "Fashion",
@@ -125,6 +127,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 SizedBox(height: 15),
 
                 CustomAddImage(
+                  imageUrl:
+                      widget.isUpdate ? widget.productEntity!.imageUrl : "",
                   onTap: (File file) {
                     imageFile = file;
                   },
@@ -135,35 +139,46 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     if (state is ProductFailer) {
                       Warning.showWarning(context, message: state.errMessage);
                     }
-                    if (state is AddProductSuccess) {
-                      Navigator.pop(context);
+                    if (state is ProductSuccess) {
+                      Navigator.pop(context, true);
                     }
                   },
                   builder: (context, state) {
-                    return state is AddProductLoading
+                    return state is ProductLoading
                         ? Center(child: CircularProgressIndicator())
                         : CustomButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate() &&
                                 selectedCategory != null) {
-                              if (imageFile != null) {
-                                String dId = Uuid().v4();
+                              if (imageFile != null || widget.isUpdate) {
                                 ProductModel product = ProductModel(
                                   name: nameController.text,
                                   price: double.parse(priceController.text),
                                   stock: int.parse(quantityController.text),
                                   category: selectedCategory!,
                                   description: descriptionController.text,
-                                  id: dId,
+                                  id:
+                                      widget.isUpdate
+                                          ? widget.productEntity!.id
+                                          : dId,
                                   sId: "123456789",
-                                  imageUrl: await SupabaseService.uploadImage(
-                                    file: imageFile!,
-                                  ),
+                                  imageUrl:
+                                      widget.isUpdate
+                                          ? widget.productEntity!.imageUrl
+                                          : await SupabaseService.uploadImage(
+                                            file: imageFile!,
+                                          ),
                                 );
-                                await context.read<ProductCubit>().addProduct(
-                                  dId: dId,
-                                  product: product,
-                                );
+                                widget.isUpdate
+                                    ? await context
+                                        .read<ProductCubit>()
+                                        .updateProduct(
+                                          dId: widget.productEntity!.id,
+                                          data: product,
+                                        )
+                                    : await context
+                                        .read<ProductCubit>()
+                                        .addProduct(dId: dId, product: product);
                               } else {
                                 Warning.showWarning(
                                   context,
@@ -172,7 +187,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                               }
                             }
                           },
-                          text: "Add Product",
+                          text:
+                              widget.isUpdate
+                                  ? "Update Product"
+                                  : "Add Product ",
                         );
                   },
                 ),

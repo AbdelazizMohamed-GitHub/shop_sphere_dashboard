@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,8 +8,10 @@ import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 
 class CustomAddImage extends StatefulWidget {
-  const CustomAddImage({Key? key, required this.onTap}) : super(key: key);
+  const CustomAddImage({Key? key, this.onTap, required this.imageUrl})
+    : super(key: key);
   final void Function(File file)? onTap;
+  final String? imageUrl;
   @override
   State<CustomAddImage> createState() => _CustomAddImageState();
 }
@@ -27,7 +30,12 @@ class _CustomAddImageState extends State<CustomAddImage> {
         borderRadius: BorderRadius.circular(10),
       ),
       child:
-          imageFile == null
+          widget.imageUrl != ""
+              ? ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(widget.imageUrl!, fit: BoxFit.fill),
+              )
+              : imageFile == null
               ? GestureDetector(
                 onTap: () async {
                   File? _image = await Funcations.pickImageFromGallery();
@@ -54,7 +62,7 @@ class _CustomAddImageState extends State<CustomAddImage> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.file(imageFile!, fit: BoxFit.fitWidth),
+                    child: Image.file(imageFile!, fit: BoxFit.fill),
                   ),
                   Positioned(
                     top: 0,

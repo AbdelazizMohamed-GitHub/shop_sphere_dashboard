@@ -22,7 +22,7 @@ class ProductModel extends ProductEntity {
     required this.imageUrl,
     required this.category,
     required this.stock,
-  }) : super(id: id, name: name, description: description, price: price, image: imageUrl, category: category, stock: stock);
+  }) : super(id: id, name: name, description: description, price: price, imageUrl: imageUrl, category: category, stock: stock);
 
 
 

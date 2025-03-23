@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCubit(productRepo: ProductRepoImpl()),
+      create: (context) => ProductCubit(productRepo: ProductRepoImpl(
+        firestoreService: FirestoreService()
+      )),
       child: MaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.backgroundColor,

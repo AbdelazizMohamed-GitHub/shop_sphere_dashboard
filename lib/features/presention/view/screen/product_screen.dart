@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
 import 'package:shop_sphere_dashboard/core/widget/warning.dart';
@@ -16,7 +17,9 @@ class ProductScreen extends StatelessWidget {
     return BlocProvider(
       create:
           (context) =>
-              ProductCubit(productRepo: ProductRepoImpl())..getProducts(),
+              ProductCubit(productRepo: ProductRepoImpl(
+                firestoreService: FirestoreService(),
+              ))..getProducts(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Products"),
@@ -74,7 +77,11 @@ class ProductScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AddProductScreen(isUpdate: false,)),
-            );
+            ).then((value) {
+  if (value == true) {
+    context.read<ProductCubit>().getProducts();
+  }
+});
           },
 
           child: Icon(Icons.add, color: Colors.white),
