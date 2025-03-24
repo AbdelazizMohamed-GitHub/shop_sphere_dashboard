@@ -17,6 +17,7 @@ class SearchScreen extends StatelessWidget {
         child: SearchAnchor(
           builder: (BuildContext context, SearchController controller) {
             return SearchBar(
+              
               controller: controller,
               hintText: "Search for products...",
               onChanged: (query) {
