@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_back_button.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -17,7 +18,6 @@ class SearchScreen extends StatelessWidget {
         child: SearchAnchor(
           builder: (BuildContext context, SearchController controller) {
             return SearchBar(
-              
               controller: controller,
               hintText: "Search for products...",
               onChanged: (query) {
@@ -31,26 +31,23 @@ class SearchScreen extends StatelessWidget {
             SearchController controller,
           ) async {
             final query = controller.text.toLowerCase();
-
-            final products = await FirebaseFirestore.instance
-                .collection('products')
-                .get()
-                .then(
-                  (snapshot) =>
-                      snapshot.docs
-                          .map((doc) => doc.data()['name'] as String)
-                          .toList(),
-                );
-            final results =
-                products
-                    .where((product) => product.toLowerCase().contains(query))
-                    .toList();
+            final products = await FirestoreService().gettProducts();
+            final results = products
+                .where((product) => product.name.toLowerCase().contains(query))
+                .toList();
 
             return results.map((product) {
               return ListTile(
-                title: Text(product),
+                title: Text(product.name),
                 onTap: () {
-                  controller.closeView(product);
+                  FocusScope.of(context).unfocus();
+                  controller.closeView(product.name);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(product: product),
+                    ),
+                  );
                 },
               );
             }).toList();
