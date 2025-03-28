@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
+import 'package:shop_sphere_dashboard/core/utils/screens_list.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/custom_main_chart.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_data_table.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_time_range.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   @override
@@ -28,76 +31,28 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Time range selector
-            _buildTimeRangeSelector(),
+            SizedBox(height: 40, child: CustomTimeRange()),
             SizedBox(height: 20),
-            
+
             // Metric selector
-            _buildMetricSelector(),
-            SizedBox(height: 20),
-            
+
             // Summary cards
             _buildSummaryCards(),
             SizedBox(height: 20),
-            
+
             // Main chart
-            Container(
-              height: 300,
-              child: CustomMainChart(),
-            ),
+            Container(height: 300, child: CustomMainChart()),
             SizedBox(height: 20),
-            
+
             // Secondary charts row
             _buildSecondaryCharts(),
             SizedBox(height: 20),
-            
+
             // Data table
             CustomDataTable(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTimeRangeSelector() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildTimeRangeButton('Daily'),
-        _buildTimeRangeButton('Weekly'),
-        _buildTimeRangeButton('Monthly'),
-        _buildTimeRangeButton('Yearly'),
-      ],
-    );
-  }
-
-  Widget _buildTimeRangeButton(String range) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: _selectedTimeRange == range ? Colors.white : Colors.black, backgroundColor: _selectedTimeRange == range ? Theme.of(context).primaryColor : Colors.grey[300],
-      ),
-      onPressed: () {
-        setState(() {
-          _selectedTimeRange = range;
-        });
-      },
-      child: Text(range),
-    );
-  }
-
-  Widget _buildMetricSelector() {
-    return DropdownButton<String>(
-      value: _selectedMetric,
-      items: ['Revenue', 'Users', 'Sessions', 'Conversion'].map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-      onChanged: (newValue) {
-        setState(() {
-          _selectedMetric = newValue!;
-        });
-      },
     );
   }
 
@@ -121,7 +76,10 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             children: [
               Text(title, style: TextStyle(color: Colors.grey)),
               SizedBox(height: 4),
-              Text(value, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                value,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 4),
               Text(subtitle, style: TextStyle(color: Colors.green)),
             ],
@@ -130,8 +88,6 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       ),
     );
   }
-
-  
 
   Widget _buildSecondaryCharts() {
     return Row(
@@ -153,8 +109,10 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                             _touchedIndex = -1;
                             return;
                           }
-                          _touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
+                          _touchedIndex =
+                              pieTouchResponse
+                                  .touchedSection!
+                                  .touchedSectionIndex;
                         });
                       },
                     ),
@@ -211,18 +169,18 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     ),
                     borderData: FlBorderData(
                       show: true,
-                      border: Border.all(color: const Color(0xff37434d), width: 1),
-                 
-              
+                      border: Border.all(
+                        color: const Color(0xff37434d),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
-      ),
-    )
-    )
-    )
-    ],
-
+      ],
     );
   }
 
@@ -279,12 +237,10 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     });
   }
 
-
-
   void _refreshData() {
     // Implement data refresh logic here
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Refreshing data...')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Refreshing data...')));
   }
 }

@@ -1,17 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
-import 'package:shop_sphere_dashboard/features/data/repo_impl/product_repo_impl.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/main_screen.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/process_order_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/analytics_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -41,7 +34,7 @@ class MyApp extends StatelessWidget {
           titleTextStyle: AppStyles.text26BoldBlack,
         ),
       ),
-      home: MainScreen(),
+      home: AnalyticsScreen(),
     );
   }
 }

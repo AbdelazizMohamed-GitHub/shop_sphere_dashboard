@@ -15,12 +15,7 @@ List<PaymentMethodModel> paymentMethod = [
   PaymentMethodModel(title: "Cash on delivery", imagePath: AppImages.payCash),
   PaymentMethodModel(title: "Paypal", imagePath: AppImages.paypal),
 ];
-List orderStauts = [
-  'Pending',
-  'Delivered',
-  'Processing',
-  'Cancelled',
-];
+List orderStauts = ['Pending', 'Delivered', 'Processing', 'Cancelled'];
 
 class PaymentMethodModel {
   final String title;
@@ -39,3 +34,4 @@ List category = [
   "Automotive  ",
   "Books ",
 ];
+List timeRange = ["Daily", "Weekly", "Monthly", "Yearly"];
