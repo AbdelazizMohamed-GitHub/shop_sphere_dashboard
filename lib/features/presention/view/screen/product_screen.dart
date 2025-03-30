@@ -34,19 +34,16 @@ class ProductScreen extends StatelessWidget {
             SizedBox(width: 10),
           ],
         ),
-        body: BlocConsumer<ProductCubit, ProductState>(
-          listener: (context, state) {
-            if (state is ProductFailer) {
-              Warning.showWarning(context, message: state.errMessage);
-            }
-          },
+        body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             return state is GetProductsLoading
                 ? Center(child: CircularProgressIndicator())
+                : state is ProductFailer
+                ? Center(child: Text(state.errMessage))
                 : state is GetProductsSuccess
                 ? RefreshIndicator(
                   onRefresh: () async {
-                    context.read<ProductCubit>().getProducts();
+                  await  context.read<ProductCubit>().getProducts();
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),

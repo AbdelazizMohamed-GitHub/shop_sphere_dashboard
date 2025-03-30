@@ -33,7 +33,7 @@ class _CustomAddImageState extends State<CustomAddImage> {
           widget.imageUrl != ""
               ? ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(widget.imageUrl!, fit: BoxFit.fill),
+                child: Image.network(widget.imageUrl!, fit: BoxFit.cover),
               )
               : imageFile == null
               ? GestureDetector(
@@ -59,10 +59,11 @@ class _CustomAddImageState extends State<CustomAddImage> {
                 ),
               )
               : Stack(
+                alignment: AlignmentDirectional.center,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.file(imageFile!, fit: BoxFit.fill),
+                    child: Image.file(imageFile!, fit: BoxFit.cover),
                   ),
                   Positioned(
                     top: 0,

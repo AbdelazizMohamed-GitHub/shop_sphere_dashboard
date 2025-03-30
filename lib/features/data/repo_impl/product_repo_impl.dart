@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 
 import 'package:shop_sphere_dashboard/core/errors/firebase_failure.dart';
 import 'package:shop_sphere_dashboard/core/service/firestore_service.dart';
+import 'package:shop_sphere_dashboard/core/service/supabase_service.dart';
 import 'package:shop_sphere_dashboard/features/data/model/product_model.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
 import 'package:shop_sphere_dashboard/features/domain/repo/product_repo.dart';
@@ -38,9 +39,12 @@ class ProductRepoImpl extends ProductRepo {
   }
   
   @override
-  Future<Either<FirebaseFailure, void>> deleteProduct({required String dId}) async{
+  Future<Either<FirebaseFailure, void>> deleteProduct({required String dId,required String imageUrl}) async{
 try {
   await firestoreService.deleteProduct(dId: dId);
+
+  SupabaseService.deleteImage(fileName: imageUrl);
+
   return Right('Product deleted successfully');
   
 } on FirebaseException catch (e) {

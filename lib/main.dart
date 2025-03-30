@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/analytics_screen.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/screen/customer_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -26,17 +26,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.backgroundColor,
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: AppColors.backgroundColor,
-          titleTextStyle: AppStyles.text26BoldBlack,
+    return BlocProvider(
+      create: (context) =>getIt<ProductCubit>(),
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.backgroundColor,
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: AppColors.backgroundColor,
+            titleTextStyle: AppStyles.text26BoldBlack,
+          ),
         ),
+        home: ProductScreen(),
       ),
-      home: ProductScreen(),
     );
   }
 }

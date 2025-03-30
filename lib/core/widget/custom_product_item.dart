@@ -28,7 +28,7 @@ class CustomProductItem extends StatelessWidget {
                 topRight: Radius.circular(10),
               ),
               child: GestureDetector(
-                onLongPress: () => context.read<ProductCubit>().deleteProduct(dId: product.id),
+               
                 onTap: () {
                   Navigator.push(
                     context,
@@ -39,7 +39,7 @@ class CustomProductItem extends StatelessWidget {
                     ),
                   );
                 },
-                child: Image.asset(ProductImages.apple),
+                child: Image.network(product.imageUrl, fit: BoxFit.cover),
               ),
             ),
           ),
