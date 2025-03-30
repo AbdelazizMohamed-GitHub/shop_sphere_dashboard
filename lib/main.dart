@@ -6,6 +6,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/analytics_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/customer_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           titleTextStyle: AppStyles.text26BoldBlack,
         ),
       ),
-      home: CustomerScreen(),
+      home: ProductScreen(),
     );
   }
 }

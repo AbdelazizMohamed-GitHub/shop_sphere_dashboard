@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
-import 'package:shop_sphere_dashboard/core/utils/screens_list.dart';
+
 import 'package:shop_sphere_dashboard/features/presention/view/screen/custom_main_chart.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_data_table.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_time_range.dart';
@@ -12,8 +11,7 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  String _selectedTimeRange = 'Weekly';
-  String _selectedMetric = 'Revenue';
+ 
   int _touchedIndex = -1;
 
   @override

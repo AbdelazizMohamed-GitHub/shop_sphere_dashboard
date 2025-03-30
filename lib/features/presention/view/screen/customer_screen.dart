@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 
 class CustomerScreen extends StatelessWidget {
   const CustomerScreen({super.key});
@@ -14,17 +16,13 @@ class CustomerScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-              title: Text("Customer $index"),
+              title: Text("Customer $index", style: AppStyles.text16Bold),
               trailing: IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.message_rounded),
               ),
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
-
-              ),
-              subtitle: Text("Phone $index"),
+              leading: CircleAvatar(backgroundColor: AppColors.primaryColor),
+              subtitle: Text("Phone $index", style: AppStyles.text14Regular),
             ),
           );
         },

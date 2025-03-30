@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class CustomProductItem extends StatelessWidget {
@@ -26,6 +28,7 @@ class CustomProductItem extends StatelessWidget {
                 topRight: Radius.circular(10),
               ),
               child: GestureDetector(
+                onLongPress: () => context.read<ProductCubit>().deleteProduct(dId: product.id),
                 onTap: () {
                   Navigator.push(
                     context,
