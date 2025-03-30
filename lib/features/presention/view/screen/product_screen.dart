@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
+import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_back_button.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
 import 'package:shop_sphere_dashboard/core/widget/warning.dart';
@@ -34,42 +35,49 @@ class ProductScreen extends StatelessWidget {
             SizedBox(width: 10),
           ],
         ),
-        body: BlocBuilder<ProductCubit, ProductState>(
-          builder: (context, state) {
-            return state is GetProductsLoading
-                ? Center(child: CircularProgressIndicator())
-                : state is ProductFailer
-                ? Center(child: Text(state.errMessage))
-                : state is GetProductsSuccess
-                ? RefreshIndicator(
-                  onRefresh: () async {
-                  await  context.read<ProductCubit>().getProducts();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverGrid.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10,
-                              ),
-                          itemCount: state.products.length,
-                          itemBuilder:
-                              (context, index) => CustomProductItem(
-                                product: state.products[index],
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-                : state is ProductFailer
-                ? Text("${state.errMessage}")
-                : Container();
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<ProductCubit>().getProducts();
           },
+          child: BlocBuilder<ProductCubit, ProductState>(
+            builder: (context, state) {
+              return state is GetProductsLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : state is ProductFailer
+                  ? Center(child: Text(state.errMessage))
+                  : state is GetProductsSuccess
+                  ? state.products.isEmpty
+                      ? Center(
+                        child: Text(
+                          "No Products",
+                          style: AppStyles.text26BoldBlack,
+                        ),
+                      )
+                      : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverGrid.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
+                                  ),
+                              itemCount: state.products.length,
+                              itemBuilder:
+                                  (context, index) => CustomProductItem(
+                                    product: state.products[index],
+                                  ),
+                            ),
+                          ],
+                        ),
+                      )
+                  : state is ProductFailer
+                  ? Text("${state.errMessage}")
+                  : Container();
+            },
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryColor,

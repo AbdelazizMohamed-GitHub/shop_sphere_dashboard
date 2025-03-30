@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_sphere_dashboard/core/service/bloc_obsever.dart';
 import 'package:shop_sphere_dashboard/core/service/setuplocator.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
@@ -18,6 +19,7 @@ void main() async {
     anonKey: AppKeys.supbaseApiKey,
   );
   setupLocator();
+   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 

@@ -43,7 +43,7 @@ class ProductRepoImpl extends ProductRepo {
 try {
   await firestoreService.deleteProduct(dId: dId);
 
-  SupabaseService.deleteImage(fileName: imageUrl);
+ await SupabaseService.deleteImageFromUrl(imageUrl: imageUrl);
 
   return Right('Product deleted successfully');
   

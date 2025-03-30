@@ -33,12 +33,7 @@ class DetailsScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: BlocConsumer<ProductCubit, ProductState>(
-          listener: (context, state) {
-            if (state is ProductSuccess) {
-              Navigator.pop(context);
-            }
-          },
+        child: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             return state is ProductLoading
                 ? Center(child: CircularProgressIndicator())
@@ -48,6 +43,7 @@ class DetailsScreen extends StatelessWidget {
                       dId: product.id,
                       imageUrl: product.imageUrl,
                     );
+                    Navigator.pop(context);
                   },
                   text: "Delete",
                 );

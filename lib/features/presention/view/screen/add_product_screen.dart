@@ -171,8 +171,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                       widget.isUpdate
                                           ? widget.productEntity!.imageUrl
                                           : await SupabaseService.uploadImage(
-                                            file: imageFile!,
-                                          ),
+                                                file: imageFile!,
+                                              ) ??
+                                              "",
                                 );
                                 widget.isUpdate
                                     ? await context
