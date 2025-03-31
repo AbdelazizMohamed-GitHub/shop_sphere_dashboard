@@ -4,7 +4,7 @@ import 'package:shop_sphere_dashboard/features/domain/repo/product_repo.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit( {required this.productRepo}) : super(ProductInitial());
+  ProductCubit({required this.productRepo}) : super(ProductInitial());
   final ProductRepo productRepo;
   Future<void> addProduct({
     required ProductModel product,
@@ -36,16 +36,17 @@ class ProductCubit extends Cubit<ProductState> {
     );
   }
 
-  Future<void> deleteProduct({required String dId,required imageUrl}) async {
+  Future<void> deleteProduct({required String dId, required imageUrl}) async {
     emit(ProductLoading());
-    var result = await productRepo.deleteProduct(dId: dId,imageUrl: imageUrl);
+    var result = await productRepo.deleteProduct(dId: dId, imageUrl: imageUrl);
     result.fold(
       (error) {
         emit(ProductFailer(errMessage: error.message));
       },
-      (r) async{
-       await getProducts();
+      (r) async {
         emit(ProductSuccess());
+                await getProducts();
+
       },
     );
   }
@@ -61,8 +62,9 @@ class ProductCubit extends Cubit<ProductState> {
         emit(ProductFailer(errMessage: error.message));
       },
       (r) async {
-        await getProducts();
-        emit(ProductSuccess());
+      
+          emit(ProductSuccess());
+            await getProducts();
       },
     );
   }

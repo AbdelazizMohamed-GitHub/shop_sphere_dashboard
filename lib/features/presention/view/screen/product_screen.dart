@@ -41,7 +41,8 @@ class ProductScreen extends StatelessWidget {
           },
           child: BlocBuilder<ProductCubit, ProductState>(
             builder: (context, state) {
-              return state is GetProductsLoading
+              print(state);
+              return state is ProductLoading
                   ? Center(child: CircularProgressIndicator())
                   : state is ProductFailer
                   ? Center(child: Text(state.errMessage))
@@ -73,9 +74,7 @@ class ProductScreen extends StatelessWidget {
                           ],
                         ),
                       )
-                  : state is ProductFailer
-                  ? Text("${state.errMessage}")
-                  : Container();
+                  : Center(child: Text("Error"));
             },
           ),
         ),
@@ -87,11 +86,7 @@ class ProductScreen extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => const AddProductScreen(isUpdate: false),
               ),
-            ).then((value) {
-              if (value == true) {
-                context.read<ProductCubit>().getProducts();
-              }
-            });
+            );
           },
 
           child: Icon(Icons.add, color: Colors.white),
