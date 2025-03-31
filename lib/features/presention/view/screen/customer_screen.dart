@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/massage_screen.dart';
 
 class CustomerScreen extends StatelessWidget {
   const CustomerScreen({super.key});
@@ -18,7 +19,15 @@ class CustomerScreen extends StatelessWidget {
             child: ListTile(
               title: Text("Customer $index", style: AppStyles.text16Bold),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => ChatScreen(staffId: '', customerId: ''),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.message_rounded),
               ),
               leading: CircleAvatar(backgroundColor: AppColors.primaryColor),
