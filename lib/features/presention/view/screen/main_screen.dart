@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_text_form.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/analytics_screen.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/customer_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/order_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/widget/custom_dropdown_menu.dart';
@@ -51,7 +52,16 @@ class MainScreen extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.people),
               title: Text('Customers'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CustomerScreen();
+                    },
+                  ),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.analytics),

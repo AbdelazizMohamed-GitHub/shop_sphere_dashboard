@@ -74,7 +74,7 @@ class ProductScreen extends StatelessWidget {
                           ],
                         ),
                       )
-                  : Center(child: Text("Error"));
+                  : Container();
             },
           ),
         ),

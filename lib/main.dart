@@ -7,6 +7,7 @@ import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_key.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
+import 'package:shop_sphere_dashboard/features/presention/view/screen/main_screen.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/product_screen.dart';
 import 'package:shop_sphere_dashboard/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,7 +20,7 @@ void main() async {
     anonKey: AppKeys.supbaseApiKey,
   );
   setupLocator();
-   Bloc.observer = MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>getIt<ProductCubit>(),
+      create: (context) => getIt<ProductCubit>(),
       child: MaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.backgroundColor,
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
             titleTextStyle: AppStyles.text26BoldBlack,
           ),
         ),
-        home: ProductScreen(),
+        home: MainScreen(),
       ),
     );
   }
