@@ -17,8 +17,9 @@ class ProductCubit extends Cubit<ProductState> {
         emit(ProductFailer(errMessage: error.message));
       },
       (r) async {
-        await getProducts();
+       
         emit(ProductSuccess());
+         await getProducts();
       },
     );
   }
