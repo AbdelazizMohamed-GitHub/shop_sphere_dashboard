@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             titleTextStyle: AppStyles.text26BoldBlack,
           ),
         ),
-        home: MainScreen(),
+        home: ProductScreen(),
       ),
     );
   }

@@ -1,10 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_sphere_dashboard/core/utils/app_images.dart';
 
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/features/domain/entity/prosuct_entity.dart';
-import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/details_screen.dart';
 
 class CustomProductItem extends StatelessWidget {
@@ -39,7 +37,8 @@ class CustomProductItem extends StatelessWidget {
                     ),
                   );
                 },
-                child: Image.network(product.imageUrl, fit: BoxFit.cover),
+                child: CachedNetworkImage(imageUrl: product.imageUrl, fit: BoxFit.cover,placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),),
               ),
             ),
           ),

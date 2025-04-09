@@ -19,7 +19,7 @@ class CustomDetailsHeader extends StatelessWidget {
             left: 50,
             right: 10,
             bottom: 0,
-            child: Image.asset(ProductImages.apple, fit: BoxFit.cover),
+            child: Image.network(product.imageUrl, fit: BoxFit.cover),
           ),
           Positioned(
             left: 20,

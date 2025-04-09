@@ -5,7 +5,6 @@ import 'package:shop_sphere_dashboard/core/utils/app_color.dart';
 import 'package:shop_sphere_dashboard/core/utils/app_styles.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_back_button.dart';
 import 'package:shop_sphere_dashboard/core/widget/custom_product_item.dart';
-import 'package:shop_sphere_dashboard/core/widget/warning.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_cubit.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/controller/product_cubit/product_state.dart';
 import 'package:shop_sphere_dashboard/features/presention/view/screen/add_product_screen.dart';
